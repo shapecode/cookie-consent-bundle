@@ -1,0 +1,47 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.css') }}"/>
+<script src="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.js') }}"></script>
+<script>
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            palette: {
+                popup: {
+                    background: "{{ config.layout.palette.popup.background }}",
+                    text: "{{ config.layout.palette.popup.text }}"
+                },
+                button: {
+                    background: "{{ config.layout.palette.button.background }}",
+                    text: "{{ config.layout.palette.button.text }}"
+                }
+            },
+            static: "{{ config.layout.static }}",
+            theme: "{{ config.layout.theme }}",
+            position: "{{ config.layout.position }}",
+            content: {
+                header: '{{ 'header'|trans({}, 'ShapecodeCookieConsent') }}',
+                message: '{{ 'message'|trans({}, 'ShapecodeCookieConsent') }}',
+                dismiss: '{{ 'dismiss'|trans({}, 'ShapecodeCookieConsent') }}',
+                allow: '{{ 'allow'|trans({}, 'ShapecodeCookieConsent') }}',
+                deny: '{{ 'deny'|trans({}, 'ShapecodeCookieConsent') }}',
+                link: '{{ 'link'|trans({}, 'ShapecodeCookieConsent') }}',
+                {% if config.policy_route is not null %}
+                href: '{{ path(config.policy_route) }}',
+                {% elseif config.policy_url is not null %}
+                href: '{{ config.policy_url }}',
+                {% endif %}
+                close: '{{ 'close'|trans({}, 'ShapecodeCookieConsent') }}',
+            },
+            {% verbatim %}
+            elements: {
+                header: '<span class="cc-header">{{header}}</span>&nbsp;',
+                message: '<div id="cookieconsent:desc" class="cc-message">{{message}}</div>',
+                messagelink: '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a></span>',
+                dismiss: '<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">{{dismiss}}</a>',
+                allow: '<a aria-label="allow cookies" tabindex="0" class="cc-btn cc-allow">{{allow}}</a>',
+                deny: '<a aria-label="deny cookies" tabindex="0" class="cc-btn cc-deny">{{deny}}</a>',
+                link: '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a>',
+                close: '<span aria-label="dismiss cookie message" tabindex="0" class="cc-close">{{close}}</span>',
+            }
+            {% endverbatim %}
+        })
+    });
+</script>

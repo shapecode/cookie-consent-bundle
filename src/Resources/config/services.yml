@@ -1,0 +1,7 @@
+services:
+    shapecode_cookie_consents.twig_extension.cookie_consent:
+        class: Shapecode\Bundle\CookieConsentBundle\Twig\Extension\CookieConsentExtension
+        arguments:
+            - '%shapecode_cookie_consent.config%'
+        tags:
+            - { name: twig.extension }
