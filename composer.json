@@ -1,6 +1,6 @@
 {
     "name": "shapecode/cookie-consent-bundle",
-    "description": "",
+    "description": "Symfony Bundle for the Cookie Consent Plugin.",
     "keywords": [
         "cookie",
         "consent",
