@@ -1,5 +1,7 @@
-<link rel="stylesheet" type="text/css" href="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.css') }}"/>
-<script src="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.js') }}"></script>
+{% if config.assets_on == true %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.css') }}"/>
+    <script src="{{ asset('bundles/shapecodecookieconsent/cookieconsent.min.js') }}"></script>
+{% endif %}
 <script>
     window.addEventListener("load", function () {
         window.cookieconsent.initialise({
