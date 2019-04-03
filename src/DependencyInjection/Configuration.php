@@ -49,6 +49,7 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('policy_url')->defaultNull()->end()
                 ->scalarNode('policy_route')->defaultNull()->end()
                 ->scalarNode('template')->defaultNull()->end()
+                ->scalarNode('assets_on')->defaultTrue()->end()
             ->end();
 
         return $treeBuilder;
