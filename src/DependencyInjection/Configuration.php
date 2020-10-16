@@ -1,22 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shapecode\Bundle\CookieConsentBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * Class Configuration
- *
- * @package Shapecode\Bundle\CookieConsentBundle\DependencyInjection
- * @author  Nikita Loges
- */
 class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('shapecode_cookie_consent');
+        $treeBuilder = new TreeBuilder('shapecode_cookie_consent');
+        $rootNode    = $treeBuilder->getRootNode();
         $rootNode
             ->children()
                 ->arrayNode('layout')
@@ -54,5 +50,4 @@ class Configuration implements ConfigurationInterface
 
         return $treeBuilder;
     }
-
 }

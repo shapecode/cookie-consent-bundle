@@ -1,26 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Shapecode\Bundle\CookieConsentBundle\Twig\Extension;
 
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-/**
- * Class CookieConsentExtension
- *
- * @package Shapecode\Bundle\CookieConsentBundle\Twig\Extension
- * @author  Nikita Loges
- * @company tenolo GbR
- */
 class CookieConsentExtension extends AbstractExtension
 {
-
-    /** @var array */
-    protected $config;
+    /** @var array<string, mixed> */
+    protected array $config;
 
     /**
-     * @param array $config
+     * @param array<string, mixed> $config
      */
     public function __construct(array $config)
     {
@@ -30,24 +24,19 @@ class CookieConsentExtension extends AbstractExtension
     /**
      * @inheritdoc
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new TwigFunction('cookie_consent', [$this, 'getCookieConsent'], ['is_safe' => ['html'], 'needs_environment' => true])
+            new TwigFunction('cookie_consent', [$this, 'getCookieConsent'], ['is_safe' => ['html'], 'needs_environment' => true]),
         ];
     }
 
-    /**
-     * @param Environment $environment
-     *
-     * @return string
-     */
-    public function getCookieConsent(Environment $environment)
+    public function getCookieConsent(Environment $environment): string
     {
-        $template = ($this->config['template'] !== null)?$this->config['template']:'@ShapecodeCookieConsent/cookie_consent.html.twig';
+        $template = $this->config['template'] ?? '@ShapecodeCookieConsent/cookie_consent.html.twig';
 
-        return $environment->render($template,[
-            'config' => $this->config
+        return $environment->render($template, [
+            'config' => $this->config,
         ]);
     }
 }

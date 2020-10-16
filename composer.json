@@ -22,21 +22,48 @@
     "authors": [
         {
             "name": "Nikita Loges",
-            "homepage": "https://loges.software",
-            "email": "software@nikita-loges.de"
+            "email": "git@loges.one"
         }
     ],
     "require": {
-        "php": "~5.6|~7.0",
+        "php": "~7.4",
 
-        "symfony/framework-bundle": "~2.8|~3.0|~4.0",
-        "symfony/dependency-injection": "~2.8|~3.0|~4.0",
-        "symfony/http-kernel": "~2.8|~3.0|~4.0",
-        "symfony/config": "~2.8|~3.0|~4.0",
-        "symfony/translation": "~2.8|~3.0|~4.0",
-        "symfony/twig-bundle": "~2.8|~3.0|~4.0",
+        "symfony/framework-bundle": "~4.4|~5.0",
+        "symfony/dependency-injection": "~4.4|~5.0",
+        "symfony/http-kernel": "~4.4|~5.0",
+        "symfony/config": "~4.4|~5.0",
+        "symfony/translation": "~4.4|~5.0",
+        "symfony/twig-bundle": "~4.4|~5.0",
 
-        "twig/twig": "~1.34|~2.0"
+        "twig/twig": "~2.0|~3.0"
+    },
+    "require-dev": {
+        "doctrine/coding-standard": "^8.1",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpstan/phpstan": "~0.12",
+        "phpstan/phpstan-deprecation-rules": "~0.12",
+        "phpstan/phpstan-phpunit": "~0.12",
+        "phpstan/phpstan-strict-rules": "~0.12",
+        "maglnet/composer-require-checker": "^2.0",
+        "icanhazstring/composer-unused": "~0.7",
+        "phpunit/phpunit": "^9.4"
+    },
+    "scripts": {
+        "check": [
+            "@crc",
+            "@unuse",
+            "@cs-check",
+            "@phpstan",
+            "@phpunit"
+        ],
+        "phpstan": "phpstan analyse --ansi",
+        "phpstan-update-baseline": "phpstan analyse --ansi --generate-baseline phpstan-baseline.neon",
+        "crc": "vendor/bin/composer-require-checker --config-file=./composer-require-checker.json --ansi",
+        "phpunit": "phpunit --colors=always",
+        "cs-check": "phpcs -s",
+        "cs-fix": "phpcbf",
+        "unuse": "composer unused --excludeDir=vendor --excludeDir=var --excludeDir=node_modules --ansi"
     },
     "autoload": {
         "psr-4": {
